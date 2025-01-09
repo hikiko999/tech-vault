@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: task
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: task-container
+            image: antrea/toolbox
+            # there is no official "toolbox" image
+            command:
+              - "curl"
+              - "-sk"
+              - "https://httpbin.org/get"
+              # https://api.cyber-widget.com/refresh is unreachable
+          restartPolicy: OnFailure
