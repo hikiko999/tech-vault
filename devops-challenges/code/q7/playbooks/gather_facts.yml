@@ -1,0 +1,9 @@
+---
+  - name: Gather Facts Test
+    hosts: all
+    gather_facts: yes
+  
+    tasks:
+      - name: Output facts
+        debug:
+          var: ansible_facts #| to_nice_yaml
