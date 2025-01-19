@@ -1,11 +1,10 @@
-FROM ubuntu:24.10
+FROM ubuntu:24.04
 
-ENV ANSIBLE_USER=ansibleuser
-ENV ANSIBLE_PW=changeme123
-
-RUN apt update -y && apt install openssh-server -y
-RUN useradd -m ${ANSIBLE_USER} -G sudo -p $(openssl passwd -1 ${ANSIBLE_PW})
+RUN apt update -y && apt install openssh-server sudo -y
+RUN echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 EXPOSE 22
+RUN service ssh start
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["sh","-c", "service ssh start && tail -f /dev/null"]
+# tail will keep the container running

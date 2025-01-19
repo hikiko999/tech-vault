@@ -1,5 +1,5 @@
 ---
-  - name: Gather Facts Test
+  - name: DevOps Solution
     hosts: all
     gather_facts: no
     become: yes
@@ -8,13 +8,22 @@
       - name: Update the package manager cache.
         ansible.builtin.apt:
           update_cache: yes
+          
       - name: Install the Apache web server package (`apache2`).
         ansible.builtin.apt:
           name: apache2
-      - name: Enable and start the Apache service.
-        ansible.builtin.service:
-          name: apache2
-          state: started
+      # - name: Enable and start the Apache service.
+      #   ansible.builtin.service:
+      #     name: apache2
+      #     state: started
+      #     enabled: yes
+      # ->
+      # Using workaround for Docker container without systemd
+      - name: Enable service with update-rc.d (Debian/Ubuntu)
+        ansible.builtin.command: update-rc.d apache2 defaults
+      - name:  Start the Apache service.
+        ansible.builtin.command: service apache2 start
+
       - name: Deploy a simple 'index.html' file
         ansible.builtin.copy:
           src: ./index.html
