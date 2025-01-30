@@ -28,3 +28,14 @@ module "networking" {
     Environment = "dev"
   }
 }
+
+module "compute" {
+  source = "./modules/compute"
+
+  ec2_ami  = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  ec2_type = "t2.micro"
+
+  ec2_tag_environment = {
+    Environment = "dev"
+  }
+}
