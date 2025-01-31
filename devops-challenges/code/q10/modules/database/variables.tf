@@ -6,7 +6,7 @@ variable "rds_username" {
 
 variable "rds_password" {
     type = string
-    description = "Password for RDS resourec"
+    description = "Password for RDS resource"
 }
 
 variable "rds_tags" {

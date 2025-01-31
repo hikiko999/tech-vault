@@ -13,7 +13,19 @@ variable "ec2_tags" {
   description = "Tags for EC2 resource"
 }
 
+# From Outputs
+
+variable "ec2_vpc" {
+  type = string
+  description = "VPC assigned to EC2 resource"
+}
+
 variable "ec2_subnets" {
   type        = list(string)
-  description = "Subnet ids for EC2 resource"
+  description = "Subnet ids assigned to EC2 resource"
+}
+
+variable "ec2_azs" {
+  type        = list(string)
+  description = "Availability zones assigned to EC2 resource"
 }
