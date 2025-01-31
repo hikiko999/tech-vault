@@ -1,14 +1,14 @@
 variable "ec2_ami" {
   type        = list(string)
-  description = "AMI for EC2 instance"
+  description = "AMI for EC2 resource"
 }
 
 variable "ec2_type" {
   type        = string
-  description = "Type for EC2 Instance"
+  description = "Type for EC2 resource"
 }
 
-variable "ec2_tag_environment" {
+variable "ec2_tags" {
   type        = map(string)
-  description = "Environment tag for resources inside the VPC"
+  description = "Tags for EC2 resource"
 }

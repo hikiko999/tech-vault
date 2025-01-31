@@ -19,7 +19,7 @@ module "vpc" {
   enable_vpn_gateway = false
 
   tags = merge(
-      var.vpc_tag_environment,
+      var.vpc_tags,
     {
       Terraform   = "true"
     }

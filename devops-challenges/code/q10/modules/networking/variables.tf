@@ -23,7 +23,7 @@ variable "vpc_public_subnets" {
   description = "Public subnets inside the VPC resource"
 }
 
-variable "vpc_tag_environment" {
+variable "vpc_tags" {
   type        = map(string)
-  description = "Environment tag for resources inside the VPC"
+  description = "Tags for VPC resources"
 }

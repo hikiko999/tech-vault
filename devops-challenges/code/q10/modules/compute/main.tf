@@ -12,7 +12,7 @@ resource "aws_instance" "ec2" {
   instance_type = "t2.micro"
 
   tags = merge(
-      var.ec2_tag_environment,
+      var.ec2_tags,
     {
       Terraform   = "true"
     }
