@@ -31,24 +31,24 @@ module "networking" {
   }
 }
 
-module "compute" {
-  source = "./modules/compute"
+# module "compute" {
+#   source = "./modules/compute"
 
-  ec2_ami  = ["amzn2-ami-hvm-*-x86_64-gp2"]
-  ec2_type = "t2.micro"
+#   ec2_ami  = ["amzn2-ami-hvm-*-x86_64-gp2"]
+#   ec2_type = "t2.micro"
 
-  ec2_tags = {
-    Environment = "dev"
-  }
-}
+#   ec2_tags = {
+#     Environment = "dev"
+#   }
+# }
 
-module "database" {
-  source = "./modules/database"
+# module "database" {
+#   source = "./modules/database"
 
-  rds_username = "foobar"
-  rds_password = var.secret_rds_password
+#   rds_username = "foobar"
+#   rds_password = var.secret_rds_password
 
-  rds_tags = {
-    Environment = "dev"
-  }
-}
+#   rds_tags = {
+#     Environment = "dev"
+#   }
+# }

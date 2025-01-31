@@ -15,12 +15,12 @@ variable "vpc_azs" {
 
 variable "vpc_private_subnets" {
   type        = list(string)
-  description = "Private subnets inside the VPC resource"
+  description = "Private subnets (CIDR) inside the VPC resource"
 }
 
 variable "vpc_public_subnets" {
   type        = list(string)
-  description = "Public subnets inside the VPC resource"
+  description = "Public subnets (CIDR) inside the VPC resource"
 }
 
 variable "vpc_tags" {
