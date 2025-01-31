@@ -21,12 +21,11 @@ resource "aws_instance" "ec2" {
   subnet_id = element(var.ec2_subnets,count.index)
   ami           = data.aws_ami.amazon_linux_2.id
   instance_type = var.ec2_type
-  associate_public_ip_address = true
 
   tags = merge(
       local.tags, 
       {
-        Name = "${var.ec2_vpc}-ec2${count.index}-${element(var.ec2_azs,count.index)}"
+        Name = "${var.ec2_vpc}-ec2[${count.index}]-${element(var.ec2_azs,count.index)}"
       }
   )
 }

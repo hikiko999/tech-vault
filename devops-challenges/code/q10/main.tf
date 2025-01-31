@@ -41,8 +41,9 @@ module "compute" {
     Environment = "dev"
   }
 
+  ec2_vpc     = module.networking.main_vpc_name
   ec2_subnets = module.networking.public_subnet_ids
-  ec2_azs = module.networking.public_subnet_azs
+  ec2_azs     = module.networking.public_subnet_azs
 }
 
 # module "database" {
