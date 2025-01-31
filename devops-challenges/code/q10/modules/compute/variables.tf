@@ -13,7 +13,7 @@ variable "ec2_tags" {
   description = "Tags for EC2 resource"
 }
 
-# From Outputs
+# Networking Module
 
 variable "ec2_vpc" {
   type = string

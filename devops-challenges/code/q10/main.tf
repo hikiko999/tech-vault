@@ -1,4 +1,13 @@
 terraform {
+    backend "s3" {
+    bucket         = "techvault-terraform-state"
+    key            = "./terraform.tfstate"
+    region         = "us-west-2"
+    encrypt        = true
+    dynamodb_table = "techvault-terraform-state-lock"
+    acl            = "bucket-owner-full-control"
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -46,13 +55,16 @@ module "compute" {
   ec2_azs     = module.networking.public_subnet_azs
 }
 
-# module "database" {
-#   source = "./modules/database"
+module "database" {
+  source = "./modules/database"
 
-#   rds_username = "foobar"
-#   rds_password = var.secret_rds_password
+  rds_username = "foobar"
+  rds_password = var.secret_rds_password
 
-#   rds_tags = {
-#     Environment = "dev"
-#   }
-# }
+  rds_tags = {
+    Environment = "dev"
+  }
+
+  rds_vpc     = module.networking.main_vpc_name
+  rds_subnets = module.networking.public_subnet_ids
+}
