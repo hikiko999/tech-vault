@@ -12,3 +12,8 @@ variable "ec2_tags" {
   type        = map(string)
   description = "Tags for EC2 resource"
 }
+
+variable "ec2_subnets" {
+  type        = list(string)
+  description = "Subnet ids for EC2 resource"
+}

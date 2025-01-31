@@ -31,16 +31,18 @@ module "networking" {
   }
 }
 
-# module "compute" {
-#   source = "./modules/compute"
+module "compute" {
+  source = "./modules/compute"
 
-#   ec2_ami  = ["amzn2-ami-hvm-*-x86_64-gp2"]
-#   ec2_type = "t2.micro"
+  ec2_ami  = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  ec2_type = "t2.micro"
 
-#   ec2_tags = {
-#     Environment = "dev"
-#   }
-# }
+  ec2_tags = {
+    Environment = "dev"
+  }
+
+  ec2_subnets = module.networking.public_subnet_ids
+}
 
 # module "database" {
 #   source = "./modules/database"
