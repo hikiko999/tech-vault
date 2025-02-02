@@ -16,12 +16,17 @@ output "main_vpc_name" {
 
 output "public_subnet_ids" {
   value       = aws_subnet.public[*].id
-  description = "Ids for the subnet resources"
+  description = "Ids for public subnet resources"
 }
 
 output "public_subnet_azs" {
   value       = aws_subnet.public[*].availability_zone
   description = "Availability zones assigned to public subnet resources"
+}
+
+output "private_subnet_ids" {
+  value       = aws_subnet.private[*].id
+  description = "Ids for private subnet resources"
 }
 
 output "ec2_sg_id" {
