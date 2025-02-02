@@ -16,7 +16,7 @@ variable "ec2_tags" {
 # Networking Module
 
 variable "ec2_vpc" {
-  type = string
+  type        = string
   description = "VPC assigned to EC2 resource"
 }
 
@@ -31,6 +31,6 @@ variable "ec2_azs" {
 }
 
 variable "ec2_sg" {
-  type = list(string)
+  type        = list(string)
   description = "Id for EC2 security group"
 }

@@ -67,6 +67,6 @@ module "database" {
   }
 
   rds_vpc     = module.networking.main_vpc_name
-  rds_subnets = module.networking.public_subnet_ids
+  rds_subnets = module.networking.private_subnet_ids
   rds_sg      = [module.networking.rds_sg_id]
 }

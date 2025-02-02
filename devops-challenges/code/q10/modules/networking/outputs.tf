@@ -1,6 +1,6 @@
 output "main_vpc_name" {
-    value = aws_vpc.main.tags["Name"]
-    description = "Name of the main VPC resource"
+  value       = aws_vpc.main.tags["Name"]
+  description = "Name of the main VPC resource"
 }
 
 # output "public_subnet_details" {
@@ -15,21 +15,21 @@ output "main_vpc_name" {
 # }
 
 output "public_subnet_ids" {
-    value = aws_subnet.public[*].id
-    description = "Ids for the subnet resources"
+  value       = aws_subnet.public[*].id
+  description = "Ids for the subnet resources"
 }
 
 output "public_subnet_azs" {
-    value = aws_subnet.public[*].availability_zone
-    description = "Availability zones assigned to public subnet resources"
+  value       = aws_subnet.public[*].availability_zone
+  description = "Availability zones assigned to public subnet resources"
 }
 
 output "ec2_sg_id" {
-    value = aws_security_group.ec2_sg.id
-    description = "Id for EC2 security group" # Outputs String
+  value       = aws_security_group.ec2_sg.id
+  description = "Id for EC2 security group" # Outputs String
 }
 
 output "rds_sg_id" {
-    value = aws_security_group.rds_sg.id
-    description = "Id for RDS security group" # Outputs String
+  value       = aws_security_group.rds_sg.id
+  description = "Id for RDS security group" # Outputs String
 }
