@@ -21,6 +21,7 @@ resource "aws_instance" "ec2" {
   subnet_id = element(var.ec2_subnets,count.index)
   ami           = data.aws_ami.amazon_linux_2.id
   instance_type = var.ec2_type
+  vpc_security_group_ids = var.ec2_sg
 
   tags = merge(
       local.tags, 

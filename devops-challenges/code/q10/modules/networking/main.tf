@@ -107,26 +107,63 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private[count.index].id
 }
 
-# Remote Modules
+# Security Groups
 
-# https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
-# module "vpc" {
-#   source = "terraform-aws-modules/vpc/aws"
+resource "aws_security_group" "ec2_sg" {
+  name        = "${aws_vpc.main.tags["Name"]}-ec2-sg"
+  description = "Allow SSH and HTTP inbound traffic for EC2 (public subnet)"
 
-#   name = var.vpc_name
-#   cidr = var.vpc_cidr
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   azs             = var.vpc_azs
-#   private_subnets = var.vpc_private_subnets
-#   public_subnets  = var.vpc_public_subnets
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   enable_nat_gateway = false
-#   enable_vpn_gateway = false
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" # All protocols
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   tags = merge(
-#       var.vpc_tags,
-#     {
-#       Terraform   = "true"
-#     }
-#   )
-# }
+  tags = merge(
+      local.tags,
+      {
+        Name = "${aws_vpc.main.tags["Name"]}-ec2-sg"
+      }
+  )
+}
+
+resource "aws_security_group" "rds_sg" {
+  name        = "${aws_vpc.main.tags["Name"]}-rds-sg"
+  description = "Allow MySQL traffic for RDS (private subnet)"
+
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr] # String to list
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" # All protocols
+    cidr_blocks = [var.vpc_cidr] 
+  }
+
+  tags = merge(
+      local.tags,
+      {
+        Name = "${aws_vpc.main.tags["Name"]}-rds-sg"
+      }
+  )
+}

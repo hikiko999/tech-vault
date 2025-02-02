@@ -27,6 +27,7 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot  = true
 
   db_subnet_group_name = aws_db_subnet_group.rds_sng.name
+  vpc_security_group_ids = var.rds_sg
 
   tags = merge(
       local.tags,

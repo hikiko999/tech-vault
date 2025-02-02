@@ -23,3 +23,13 @@ output "public_subnet_azs" {
     value = aws_subnet.public[*].availability_zone
     description = "Availability zones assigned to public subnet resources"
 }
+
+output "ec2_sg_id" {
+    value = aws_security_group.ec2_sg.id
+    description = "Id for EC2 security group" # Outputs String
+}
+
+output "rds_sg_id" {
+    value = aws_security_group.rds_sg.id
+    description = "Id for RDS security group" # Outputs String
+}

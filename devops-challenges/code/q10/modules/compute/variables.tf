@@ -29,3 +29,8 @@ variable "ec2_azs" {
   type        = list(string)
   description = "Availability zones assigned to EC2 resource"
 }
+
+variable "ec2_sg" {
+  type = list(string)
+  description = "Id for EC2 security group"
+}

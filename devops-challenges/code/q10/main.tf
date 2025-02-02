@@ -1,5 +1,5 @@
 terraform {
-    backend "s3" {
+  backend "s3" {
     bucket         = "techvault-terraform-state"
     key            = "./terraform.tfstate"
     region         = "us-west-2"
@@ -53,6 +53,7 @@ module "compute" {
   ec2_vpc     = module.networking.main_vpc_name
   ec2_subnets = module.networking.public_subnet_ids
   ec2_azs     = module.networking.public_subnet_azs
+  ec2_sg      = [module.networking.ec2_sg_id] # Requires List
 }
 
 module "database" {
@@ -67,4 +68,5 @@ module "database" {
 
   rds_vpc     = module.networking.main_vpc_name
   rds_subnets = module.networking.public_subnet_ids
+  rds_sg      = [module.networking.rds_sg_id]
 }

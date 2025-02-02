@@ -25,3 +25,8 @@ variable "rds_subnets" {
   type = list(string)
   description = "Subnets assigned to RDS subnet group resource"
 }
+
+variable "rds_sg" {
+  type = list(string)
+  description = "Id for RDS security group"
+}
